@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "img": "https://i.postimg.cc/wTBmrpP1/icons8-team-48.png",
+        "title": "Expert Team"
+    },
+    {
+        "id": 2,
+        "img": "https://i.postimg.cc/13w5C79g/icons8-time-48.png",
+        "title": "Timely Delivery"
+    },
+    {
+        "id": 3,
+        "img": "https://i.postimg.cc/CMRZCNf8/icons8-online-support-50.png",
+        "title": "24/7 Support"
+    },
+    {
+        "id": 4,
+        "img": "https://i.postimg.cc/vZbHKLD3/icons8-wrench-50.png",
+        "title": "Best Equipment"
+    },
+    {
+        "id": 5,
+        "img": "https://i.postimg.cc/Y9rrQhQC/icons8-guarantee-48.png",
+        "title": "100% Guranty"
+    },
+    {
+        "id": 6,
+        "img": "https://i.postimg.cc/rpJcyM7X/icons8-delivery-48.png",
+        "title": "Timely Delivery"
+    }
+]
