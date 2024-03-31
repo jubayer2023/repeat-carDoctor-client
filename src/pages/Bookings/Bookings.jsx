@@ -1,26 +1,38 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
+// import { useContext, useEffect, useState } from "react";
+// import { AuthContext } from "../../provider/AuthProvider";
+import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import BookingsRow from "./BookingsRow";
-import axios from "axios";
+// import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Bookings = () => {
-  const { user } = useContext(AuthContext);
-
+  // const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [bookings, setBookings] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
-  const url = `http://localhost:5000/bookings?email=${user.email}`;
+  // const url = `http://localhost:5000/bookings?email=${user.email}`;
+
+  const url = `/bookings?email=${user.email}`;
 
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axiosSecure.get(url).then((res) => {
+      // console.log(res.data);
       setBookings(res.data);
     });
+
+    // axios.get(url, { withCredentials: true }).then((res) => {
+    //   setBookings(res.data);
+    // });
+
     // fetch(url)
     //   .then((res) => res.json())
     //   .then((data) => {
     //     console.log(data);
     //     setBookings(data);
     //   });
-  }, [url]);
+  }, [url, axiosSecure]);
 
   const handleDeleteBooking = (id) => {
     let confirmation = confirm("Are you sure you want to delete ?");

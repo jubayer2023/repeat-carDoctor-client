@@ -1,10 +1,13 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logImg from "../../assets/images/login/login.svg";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
+import useAuth from "../../hooks/useAuth";
+// import { useContext } from "react";
+// import { AuthContext } from "../../provider/AuthProvider";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  // const { createUser } = useContext(AuthContext);
+  const { createUser } = useAuth();
+
   const location = useLocation();
   console.log(location);
   const navigate = useNavigate();

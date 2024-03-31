@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -30,18 +31,40 @@ const AuthProvider = ({ children }) => {
   };
 
   // signOut
-  
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
-  }
+  };
 
   // user setting here
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (curretUser) => {
+      const userEmail = curretUser?.email;
+      const loggedUser = { email: userEmail };
+
       setUser(curretUser);
       console.log(curretUser);
       setLoading(false);
+
+      //   if present user
+      if (curretUser) {
+        axios
+          .post(`http://localhost:5000/jwt`, loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      } else {
+        axios
+          .post(`http://localhost:5000/logout`, loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
     return () => {
       return unsubscribe();

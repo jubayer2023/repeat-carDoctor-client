@@ -1,11 +1,13 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logImg from "../../assets/images/login/login.svg";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
-import axios from "axios";
+// import { useContext } from "react";
+// import { AuthContext } from "../../provider/AuthProvider";
+import useAuth from "../../hooks/useAuth";
+// import axios from "axios";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  // const { signInUser } = useContext(AuthContext);
+  const { signInUser } = useAuth();
 
   // redirect to the page where you wanted to go before!!!
   const location = useLocation();
@@ -23,19 +25,19 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
+        navigate(location?.state ? location.state : "/");
 
-        const user = { email };
+        // const user = { email };
 
         // json webtoken store here
-        axios
-          .post(`http://localhost:5000/jwt`, user, { withCredentials: true })
-          .then((res) => {
-            console.log(res.data);
-            if (res.data.success) {
-              console.log(res.data);
-              navigate(location?.state ? location.state : "/");
-            }
-          });
+        // axios
+        //   .post(`http://localhost:5000/jwt`, user, { withCredentials: true })
+        //   .then((res) => {
+        //     console.log(res.data);
+        //     if (res.data.success) {
+        //       console.log(res.data);
+        //     }
+        //   });
       })
       .catch((error) => {
         console.log(error.message);
