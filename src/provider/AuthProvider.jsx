@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
   // user setting here
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (curretUser) => {
-      const userEmail = curretUser?.email;
+      const userEmail = curretUser?.email || user.email;
       const loggedUser = { email: userEmail };
 
       setUser(curretUser);
@@ -50,17 +50,25 @@ const AuthProvider = ({ children }) => {
       //   if present user
       if (curretUser) {
         axios
-          .post(`https://car-doctor-server-alpha-red.vercel.app/jwt`, loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            `https://car-doctor-server-alpha-red.vercel.app/jwt`,
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             console.log(res.data);
           });
       } else {
         axios
-          .post(`https://car-doctor-server-alpha-red.vercel.app/logout`, loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            `https://car-doctor-server-alpha-red.vercel.app/logout`,
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             console.log(res.data);
           });
