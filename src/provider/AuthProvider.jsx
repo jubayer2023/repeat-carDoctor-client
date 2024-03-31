@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
       //   if present user
       if (curretUser) {
         axios
-          .post(`http://localhost:5000/jwt`, loggedUser, {
+          .post(`https://car-doctor-server-alpha-red.vercel.app/jwt`, loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post(`http://localhost:5000/logout`, loggedUser, {
+          .post(`https://car-doctor-server-alpha-red.vercel.app/logout`, loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   // all props are here
   const authInfo = {
